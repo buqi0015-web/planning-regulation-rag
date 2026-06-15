@@ -1,0 +1,2492 @@
+{
+  "cases": 100,
+  "mrr": 0.4596,
+  "top1_section_accuracy": 0.4,
+  "evidence_recall": 0.64,
+  "recall@1": 0.4,
+  "precision@1": 0.4,
+  "ndcg@1": 0.4,
+  "title_hit@1": 0.81,
+  "recall@3": 0.47,
+  "precision@3": 0.2033,
+  "ndcg@3": 0.4095,
+  "title_hit@3": 0.84,
+  "recall@5": 0.52,
+  "precision@5": 0.144,
+  "ndcg@5": 0.4416,
+  "title_hit@5": 0.87,
+  "recall@10": 0.64,
+  "precision@10": 0.089,
+  "ndcg@10": 0.4893,
+  "title_hit@10": 0.94,
+  "by_category": {
+    "clause_lookup": {
+      "cases": 40,
+      "recall@5": 0.25,
+      "top1_section_accuracy": 0.1,
+      "mrr": 0.169,
+      "evidence_recall": 0.35
+    },
+    "business_paraphrase": {
+      "cases": 25,
+      "recall@5": 0.84,
+      "top1_section_accuracy": 0.64,
+      "mrr": 0.72,
+      "evidence_recall": 0.88
+    },
+    "table": {
+      "cases": 15,
+      "recall@5": 0.4,
+      "top1_section_accuracy": 0.3333,
+      "mrr": 0.413,
+      "evidence_recall": 0.8667
+    },
+    "figure": {
+      "cases": 6,
+      "recall@5": 0.3333,
+      "top1_section_accuracy": 0.3333,
+      "mrr": 0.3333,
+      "evidence_recall": 0.3333
+    },
+    "multi_evidence": {
+      "cases": 4,
+      "recall@5": 1.0,
+      "top1_section_accuracy": 1.0,
+      "mrr": 1.0,
+      "evidence_recall": 1.0
+    },
+    "scope": {
+      "cases": 10,
+      "recall@5": 0.9,
+      "top1_section_accuracy": 0.9,
+      "mrr": 0.9,
+      "evidence_recall": 0.9
+    }
+  },
+  "failures": [
+    {
+      "query": "《住宅全装修设计标准》第1.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "住宅全装修设计标准",
+          "content_type": "body",
+          "section": "1.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "住宅全装修设计标准",
+      "top1_section": "1.0.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《住宅设计规范》第1.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "住宅设计规范",
+          "content_type": "body",
+          "section": "1.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "住宅设计规范",
+      "top1_section": "1.0.3",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《公共建筑节能设计标准》第3.0.5条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "公共建筑节能设计标准",
+          "content_type": "body",
+          "section": "3.0.5"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "公共建筑节能设计标准",
+      "top1_section": "7.4（续8）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《关于发布《北京地区建设工程规划设计通则》(试行)的通知》第1.3.3条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "关于发布《北京地区建设工程规划设计通则》(试行)的通知",
+          "content_type": "body",
+          "section": "1.3.3"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "关于发布《北京地区建设工程规划设计通则》(试行)的通知",
+      "top1_section": "8.3.4（续1）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《城市居住区规划设计标准》第4.0.2条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "城市居住区规划设计标准",
+          "content_type": "body",
+          "section": "4.0.2"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "城市居住区规划设计标准",
+      "top1_section": "前置材料（续1）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《城市道路空间规划设计标准》第1.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "城市道路空间规划设计标准",
+          "content_type": "body",
+          "section": "1.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "城市道路空间规划设计标准",
+      "top1_section": "4.3.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《居住建筑节能设计标准》第1.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "居住建筑节能设计标准",
+          "content_type": "body",
+          "section": "1.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "公共建筑节能设计标准",
+      "top1_section": "7.4（续8）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《建筑日照计算参数标准》第2.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准",
+          "content_type": "body",
+          "section": "2.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "建筑日照计算参数标准",
+      "top1_section": "3.0.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《海绵城市建设设计标准》第1.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "海绵城市建设设计标准",
+          "content_type": "body",
+          "section": "1.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "海绵城市建设设计标准",
+      "top1_section": "6.1.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《社区养老服务设施设计标准》第1.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "社区养老服务设施设计标准",
+          "content_type": "body",
+          "section": "1.0.1"
+        }
+      ],
+      "rank": 9,
+      "required_recall": 1.0,
+      "top1_title": "社区养老服务设施设计标准",
+      "top1_section": "1.0.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《绿色建筑设计标准》第1.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "绿色建筑设计标准",
+          "content_type": "body",
+          "section": "1.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "绿色建筑设计标准",
+      "top1_section": "1.0.4",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《住宅全装修设计标准》第2.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "住宅全装修设计标准",
+          "content_type": "body",
+          "section": "2.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "住宅全装修设计标准",
+      "top1_section": "1.0.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《住宅设计规范》第2.0.2条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "住宅设计规范",
+          "content_type": "body",
+          "section": "2.0.2"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "公共建筑节能设计标准",
+      "top1_section": "7.4（续8）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《公共建筑节能设计标准》第4.1.2条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "公共建筑节能设计标准",
+          "content_type": "body",
+          "section": "4.1.2"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "公共建筑节能设计标准",
+      "top1_section": "7.4（续2）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《公共服务设施嵌入“平急两用”功能设计指南（试行）》第1.0.3条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "公共服务设施嵌入“平急两用”功能设计指南（试行）",
+          "content_type": "body",
+          "section": "1.0.3"
+        }
+      ],
+      "rank": 10,
+      "required_recall": 1.0,
+      "top1_title": "公共服务设施嵌入“平急两用”功能设计指南（试行）",
+      "top1_section": "3.0.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《关于发布《北京地区建设工程规划设计通则》(试行)的通知》第2.4.3条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "关于发布《北京地区建设工程规划设计通则》(试行)的通知",
+          "content_type": "body",
+          "section": "2.4.3"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "关于发布《北京地区建设工程规划设计通则》(试行)的通知",
+      "top1_section": "8.3.4（续1）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《国土空间调查、规划、用途管制用地分类标准》第4.1.2条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "国土空间调查、规划、用途管制用地分类标准",
+          "content_type": "body",
+          "section": "4.1.2"
+        }
+      ],
+      "rank": 6,
+      "required_recall": 1.0,
+      "top1_title": "国土空间调查、规划、用途管制用地分类标准",
+      "top1_section": "4.8（续4）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《居住区无障碍设计规程》第2.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "居住区无障碍设计规程",
+          "content_type": "body",
+          "section": "2.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "居住区无障碍设计规程",
+      "top1_section": "1.0.3",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《居住建筑节能设计标准》第1.0.2条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "居住建筑节能设计标准",
+          "content_type": "body",
+          "section": "1.0.2"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "公共建筑节能设计标准",
+      "top1_section": "7.4（续8）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《建筑日照计算参数标准》第2.0.4条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准",
+          "content_type": "body",
+          "section": "2.0.4"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "建筑日照计算参数标准",
+      "top1_section": "3.0.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《步行和自行车交通环境规划设计标准》第1.0.2条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "步行和自行车交通环境规划设计标准",
+          "content_type": "body",
+          "section": "1.0.2"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "步行和自行车交通环境规划设计标准",
+      "top1_section": "1.0.4",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《海绵城市建设设计标准》第2.1.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "海绵城市建设设计标准",
+          "content_type": "body",
+          "section": "2.1.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "海绵城市建设设计标准",
+      "top1_section": "6.1.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《社区养老服务设施设计标准》第1.0.3条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "社区养老服务设施设计标准",
+          "content_type": "body",
+          "section": "1.0.3"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "社区养老服务设施设计标准",
+      "top1_section": "3.0.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《绿色建筑设计标准》第1.0.3条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "绿色建筑设计标准",
+          "content_type": "body",
+          "section": "1.0.3"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "绿色建筑设计标准",
+      "top1_section": "1.0.4",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《住宅设计规范》第2.0.6条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "住宅设计规范",
+          "content_type": "body",
+          "section": "2.0.6"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "公共建筑节能设计标准",
+      "top1_section": "7.4（续8）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《公共建筑节能设计标准》第4.1.11条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "公共建筑节能设计标准",
+          "content_type": "body",
+          "section": "4.1.11"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "公共建筑节能设计标准",
+      "top1_section": "7.4（续2）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《公共服务设施嵌入“平急两用”功能设计指南（试行）》第2.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "公共服务设施嵌入“平急两用”功能设计指南（试行）",
+          "content_type": "body",
+          "section": "2.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "公共服务设施嵌入“平急两用”功能设计指南（试行）",
+      "top1_section": "4.4.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《关于发布《北京地区建设工程规划设计通则》(试行)的通知》第5.1.3条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "关于发布《北京地区建设工程规划设计通则》(试行)的通知",
+          "content_type": "body",
+          "section": "5.1.3"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "关于发布《北京地区建设工程规划设计通则》(试行)的通知",
+      "top1_section": "8.3.4（续1）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《国土空间调查、规划、用途管制用地分类标准》第4.1.4条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "国土空间调查、规划、用途管制用地分类标准",
+          "content_type": "body",
+          "section": "4.1.4"
+        }
+      ],
+      "rank": 10,
+      "required_recall": 1.0,
+      "top1_title": "国土空间调查、规划、用途管制用地分类标准",
+      "top1_section": "4.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《城市道路空间规划设计标准》第1.0.2条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "城市道路空间规划设计标准",
+          "content_type": "body",
+          "section": "1.0.2"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "城市道路空间规划设计标准",
+      "top1_section": "4.3.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "什么是“平急两用”公共服务设施？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "公共服务设施嵌入“平急两用”功能设计指南（试行）",
+          "content_type": "body",
+          "section": "2.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "公共服务设施嵌入“平急两用”功能设计指南（试行）",
+      "top1_section": "3.0.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "海绵城市建设设计应遵循什么原则？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "海绵城市建设设计标准",
+          "content_type": "body",
+          "section": "3.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "海绵城市建设设计标准",
+      "top1_section": "1.0.3",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "住宅全装修设计的基本规定是什么？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "住宅全装修设计标准",
+          "content_type": "body",
+          "section": "3.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "住宅全装修设计标准",
+      "top1_section": "1.0.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "居住区无障碍设计的基本要求是什么？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "居住区无障碍设计规程",
+          "content_type": "body",
+          "section": "3.0.1"
+        }
+      ],
+      "rank": 6,
+      "required_recall": 1.0,
+      "top1_title": "居住区无障碍设计规程",
+      "top1_section": "1.0.4",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "社区养老设施公共活动用房的照度值是多少？",
+      "category": "table",
+      "expected": [
+        {
+          "title": "社区养老服务设施设计标准 - 表6.6.3 社区养老设施建筑生活、活动及辅助空间照度值",
+          "content_type": "table",
+          "section": "表6.6.3 社区养老设施建筑生活、活动及辅助空间照度值",
+          "asset_id": "46c63f8fa562f8f7-p0023-t01"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "社区养老服务设施设计标准",
+      "top1_section": "6.6.3（续1）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "社区养老设施卫生间的照度值是多少？",
+      "category": "table",
+      "expected": [
+        {
+          "title": "社区养老服务设施设计标准 - 表6.6.3 社区养老设施建筑生活、活动及辅助空间照度值",
+          "content_type": "table",
+          "section": "表6.6.3 社区养老设施建筑生活、活动及辅助空间照度值",
+          "asset_id": "46c63f8fa562f8f7-p0023-t01"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "社区养老服务设施设计标准",
+      "top1_section": "6.6.3（续1）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "社区养老设施门厅走廊的照度值范围是多少？",
+      "category": "table",
+      "expected": [
+        {
+          "title": "社区养老服务设施设计标准 - 表6.6.3 社区养老设施建筑生活、活动及辅助空间照度值",
+          "content_type": "table",
+          "section": "表6.6.3 社区养老设施建筑生活、活动及辅助空间照度值",
+          "asset_id": "46c63f8fa562f8f7-p0023-t01"
+        }
+      ],
+      "rank": 6,
+      "required_recall": 1.0,
+      "top1_title": "社区养老服务设施设计标准",
+      "top1_section": "6.6.3（续1）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "建筑朝向与正南夹角0至20度时，新建区的建筑间距系数是多少？",
+      "category": "table",
+      "expected": [
+        {
+          "title": "北京市生活居住建筑间距暂行规定 - PDF第5页表格1",
+          "content_type": "table",
+          "section": "PDF第5页表格1",
+          "asset_id": "525745b5dd361839-p0005-t01"
+        }
+      ],
+      "rank": 7,
+      "required_recall": 1.0,
+      "top1_title": "关于发布《北京地区建设工程规划设计通则》(试行)的通知",
+      "top1_section": "2.4.1（续2）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "建筑朝向与正南夹角20度以上至60度时，改建区间距系数是多少？",
+      "category": "table",
+      "expected": [
+        {
+          "title": "北京市生活居住建筑间距暂行规定 - PDF第5页表格1",
+          "content_type": "table",
+          "section": "PDF第5页表格1",
+          "asset_id": "525745b5dd361839-p0005-t01"
+        }
+      ],
+      "rank": 7,
+      "required_recall": 1.0,
+      "top1_title": "关于发布《北京地区建设工程规划设计通则》(试行)的通知",
+      "top1_section": "2.4.1（续2）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "遮挡阳光建筑群长高比2.5以上时，新建区间距系数是多少？",
+      "category": "table",
+      "expected": [
+        {
+          "title": "北京市生活居住建筑间距暂行规定 - PDF第5页表格2",
+          "content_type": "table",
+          "section": "PDF第5页表格2",
+          "asset_id": "525745b5dd361839-p0005-t02"
+        }
+      ],
+      "rank": 8,
+      "required_recall": 1.0,
+      "top1_title": "关于发布《北京地区建设工程规划设计通则》(试行)的通知",
+      "top1_section": "1.6",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "遮挡阳光建筑群长高比1.0以下时，改建区间距系数是多少？",
+      "category": "table",
+      "expected": [
+        {
+          "title": "北京市生活居住建筑间距暂行规定 - PDF第5页表格2",
+          "content_type": "table",
+          "section": "PDF第5页表格2",
+          "asset_id": "525745b5dd361839-p0005-t02"
+        }
+      ],
+      "rank": 10,
+      "required_recall": 1.0,
+      "top1_title": "关于发布《北京地区建设工程规划设计通则》(试行)的通知",
+      "top1_section": "1.6",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "建筑朝向与正南夹角60度以上时，建筑间距系数是多少？",
+      "category": "table",
+      "expected": [
+        {
+          "title": "北京市生活居住建筑间距暂行规定 - PDF第6页表格1",
+          "content_type": "table",
+          "section": "PDF第6页表格1",
+          "asset_id": "525745b5dd361839-p0006-t01"
+        }
+      ],
+      "rank": 7,
+      "required_recall": 1.0,
+      "top1_title": "关于发布《北京地区建设工程规划设计通则》(试行)的通知",
+      "top1_section": "2.4.1（续2）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "建筑日照计算参数标准的标准号和实施日期是什么？",
+      "category": "table",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准 - 批准发布的北京市地方标准目录（2019年标字第4号、总第242号）",
+          "content_type": "table",
+          "section": "批准发布的北京市地方标准目录（2019年标字第4号、总第242号）",
+          "asset_id": "28c462afc3ba13b2-p0005-t01"
+        }
+      ],
+      "rank": 8,
+      "required_recall": 1.0,
+      "top1_title": "建筑日照计算参数标准",
+      "top1_section": "1.0.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "复杂建筑形体在日照计算中如何进行合理简化？",
+      "category": "figure",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准 - 图4.0.2~4.0.7-2",
+          "content_type": "figure",
+          "section": "图4.0.2~4.0.7-2 -2",
+          "asset_id": "28c462afc3ba13b2-p0027-f02"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "建筑日照计算参数标准",
+      "top1_section": "4.0.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "阳台和窗的日照计算基准面如何选取？",
+      "category": "figure",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准 - 图5.0.3-1",
+          "content_type": "figure",
+          "section": "图5.0.3-1 阳台、窗的计算基准面",
+          "asset_id": "28c462afc3ba13b2-p0033-f01"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "建筑日照计算参数标准",
+      "top1_section": "5.0.3",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "异型阳台和异型窗的计算基准面如何确定？",
+      "category": "figure",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准 - 图5.0.3-2",
+          "content_type": "figure",
+          "section": "图5.0.3-2 异型阳台、异型窗的计算基准面",
+          "asset_id": "28c462afc3ba13b2-p0033-f02"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "建筑日照计算参数标准",
+      "top1_section": "5.0.3",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "住宅阳台、窗的日照计算起点位于多高？",
+      "category": "figure",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准 - 图5.0.4",
+          "content_type": "figure",
+          "section": "图5.0.4 阳台、窗的计算起点",
+          "asset_id": "28c462afc3ba13b2-p0033-f03"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "建筑日照计算参数标准",
+      "top1_section": "5.0.4",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《公共服务设施嵌入“平急两用”功能设计指南（试行）》的适用范围是什么？",
+      "category": "scope",
+      "expected": [
+        {
+          "title": "公共服务设施嵌入“平急两用”功能设计指南（试行）",
+          "content_type": "body",
+          "section": "1.0.2"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "公共服务设施嵌入“平急两用”功能设计指南（试行）",
+      "top1_section": "1.0.3",
+      "top1_content_type": "body"
+    }
+  ],
+  "details": [
+    {
+      "query": "《住宅全装修设计标准》第1.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "住宅全装修设计标准",
+          "content_type": "body",
+          "section": "1.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "住宅全装修设计标准",
+      "top1_section": "1.0.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《住宅设计规范》第1.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "住宅设计规范",
+          "content_type": "body",
+          "section": "1.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "住宅设计规范",
+      "top1_section": "1.0.3",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《公共建筑节能设计标准》第3.0.5条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "公共建筑节能设计标准",
+          "content_type": "body",
+          "section": "3.0.5"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "公共建筑节能设计标准",
+      "top1_section": "7.4（续8）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《公共服务设施嵌入“平急两用”功能设计指南（试行）》第1.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "公共服务设施嵌入“平急两用”功能设计指南（试行）",
+          "content_type": "body",
+          "section": "1.0.1"
+        }
+      ],
+      "rank": 2,
+      "required_recall": 1.0,
+      "top1_title": "公共服务设施嵌入“平急两用”功能设计指南（试行）",
+      "top1_section": "3.0.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《关于发布《北京地区建设工程规划设计通则》(试行)的通知》第1.3.3条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "关于发布《北京地区建设工程规划设计通则》(试行)的通知",
+          "content_type": "body",
+          "section": "1.3.3"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "关于发布《北京地区建设工程规划设计通则》(试行)的通知",
+      "top1_section": "8.3.4（续1）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《北京市公共汽电车场站综合利用规划设计指南》第1.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "北京市公共汽电车场站综合利用规划设计指南",
+          "content_type": "body",
+          "section": "1.0.1"
+        }
+      ],
+      "rank": 2,
+      "required_recall": 1.0,
+      "top1_title": "北京市公共汽电车场站综合利用规划设计指南",
+      "top1_section": "1.0.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《国土空间调查、规划、用途管制用地分类标准》第4.1.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "国土空间调查、规划、用途管制用地分类标准",
+          "content_type": "body",
+          "section": "4.1.1"
+        }
+      ],
+      "rank": 4,
+      "required_recall": 1.0,
+      "top1_title": "国土空间调查、规划、用途管制用地分类标准",
+      "top1_section": "4.8（续4）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《城市居住区规划设计标准》第4.0.2条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "城市居住区规划设计标准",
+          "content_type": "body",
+          "section": "4.0.2"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "城市居住区规划设计标准",
+      "top1_section": "前置材料（续1）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《城市道路空间规划设计标准》第1.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "城市道路空间规划设计标准",
+          "content_type": "body",
+          "section": "1.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "城市道路空间规划设计标准",
+      "top1_section": "4.3.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《居住区无障碍设计规程》第1.0.3条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "居住区无障碍设计规程",
+          "content_type": "body",
+          "section": "1.0.3"
+        }
+      ],
+      "rank": 3,
+      "required_recall": 1.0,
+      "top1_title": "居住区无障碍设计规程",
+      "top1_section": "8.0.3",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《居住建筑节能设计标准》第1.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "居住建筑节能设计标准",
+          "content_type": "body",
+          "section": "1.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "公共建筑节能设计标准",
+      "top1_section": "7.4（续8）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《建筑日照计算参数标准》第2.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准",
+          "content_type": "body",
+          "section": "2.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "建筑日照计算参数标准",
+      "top1_section": "3.0.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《步行和自行车交通环境规划设计标准》第1.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "步行和自行车交通环境规划设计标准",
+          "content_type": "body",
+          "section": "1.0.1"
+        }
+      ],
+      "rank": 2,
+      "required_recall": 1.0,
+      "top1_title": "步行和自行车交通环境规划设计标准",
+      "top1_section": "1.0.4",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《海绵城市建设设计标准》第1.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "海绵城市建设设计标准",
+          "content_type": "body",
+          "section": "1.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "海绵城市建设设计标准",
+      "top1_section": "6.1.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《海绵城市规划编制与评估标准》第1.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "海绵城市规划编制与评估标准",
+          "content_type": "body",
+          "section": "1.0.1"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "海绵城市规划编制与评估标准",
+      "top1_section": "1.0.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《社区养老服务设施设计标准》第1.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "社区养老服务设施设计标准",
+          "content_type": "body",
+          "section": "1.0.1"
+        }
+      ],
+      "rank": 9,
+      "required_recall": 1.0,
+      "top1_title": "社区养老服务设施设计标准",
+      "top1_section": "1.0.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《绿色建筑设计标准》第1.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "绿色建筑设计标准",
+          "content_type": "body",
+          "section": "1.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "绿色建筑设计标准",
+      "top1_section": "1.0.4",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《住宅全装修设计标准》第2.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "住宅全装修设计标准",
+          "content_type": "body",
+          "section": "2.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "住宅全装修设计标准",
+      "top1_section": "1.0.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《住宅设计规范》第2.0.2条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "住宅设计规范",
+          "content_type": "body",
+          "section": "2.0.2"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "公共建筑节能设计标准",
+      "top1_section": "7.4（续8）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《公共建筑节能设计标准》第4.1.2条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "公共建筑节能设计标准",
+          "content_type": "body",
+          "section": "4.1.2"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "公共建筑节能设计标准",
+      "top1_section": "7.4（续2）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《公共服务设施嵌入“平急两用”功能设计指南（试行）》第1.0.3条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "公共服务设施嵌入“平急两用”功能设计指南（试行）",
+          "content_type": "body",
+          "section": "1.0.3"
+        }
+      ],
+      "rank": 10,
+      "required_recall": 1.0,
+      "top1_title": "公共服务设施嵌入“平急两用”功能设计指南（试行）",
+      "top1_section": "3.0.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《关于发布《北京地区建设工程规划设计通则》(试行)的通知》第2.4.3条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "关于发布《北京地区建设工程规划设计通则》(试行)的通知",
+          "content_type": "body",
+          "section": "2.4.3"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "关于发布《北京地区建设工程规划设计通则》(试行)的通知",
+      "top1_section": "8.3.4（续1）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《北京市公共汽电车场站综合利用规划设计指南》第1.0.2条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "北京市公共汽电车场站综合利用规划设计指南",
+          "content_type": "body",
+          "section": "1.0.2"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "北京市公共汽电车场站综合利用规划设计指南",
+      "top1_section": "1.0.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《国土空间调查、规划、用途管制用地分类标准》第4.1.2条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "国土空间调查、规划、用途管制用地分类标准",
+          "content_type": "body",
+          "section": "4.1.2"
+        }
+      ],
+      "rank": 6,
+      "required_recall": 1.0,
+      "top1_title": "国土空间调查、规划、用途管制用地分类标准",
+      "top1_section": "4.8（续4）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《居住区无障碍设计规程》第2.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "居住区无障碍设计规程",
+          "content_type": "body",
+          "section": "2.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "居住区无障碍设计规程",
+      "top1_section": "1.0.3",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《居住建筑节能设计标准》第1.0.2条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "居住建筑节能设计标准",
+          "content_type": "body",
+          "section": "1.0.2"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "公共建筑节能设计标准",
+      "top1_section": "7.4（续8）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《建筑日照计算参数标准》第2.0.4条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准",
+          "content_type": "body",
+          "section": "2.0.4"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "建筑日照计算参数标准",
+      "top1_section": "3.0.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《步行和自行车交通环境规划设计标准》第1.0.2条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "步行和自行车交通环境规划设计标准",
+          "content_type": "body",
+          "section": "1.0.2"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "步行和自行车交通环境规划设计标准",
+      "top1_section": "1.0.4",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《海绵城市建设设计标准》第2.1.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "海绵城市建设设计标准",
+          "content_type": "body",
+          "section": "2.1.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "海绵城市建设设计标准",
+      "top1_section": "6.1.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《海绵城市规划编制与评估标准》第1.0.2条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "海绵城市规划编制与评估标准",
+          "content_type": "body",
+          "section": "1.0.2"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "海绵城市规划编制与评估标准",
+      "top1_section": "1.0.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《社区养老服务设施设计标准》第1.0.3条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "社区养老服务设施设计标准",
+          "content_type": "body",
+          "section": "1.0.3"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "社区养老服务设施设计标准",
+      "top1_section": "3.0.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《绿色建筑设计标准》第1.0.3条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "绿色建筑设计标准",
+          "content_type": "body",
+          "section": "1.0.3"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "绿色建筑设计标准",
+      "top1_section": "1.0.4",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《住宅全装修设计标准》第3.0.5条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "住宅全装修设计标准",
+          "content_type": "body",
+          "section": "3.0.5"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "住宅全装修设计标准",
+      "top1_section": "3.0.5",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《住宅设计规范》第2.0.6条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "住宅设计规范",
+          "content_type": "body",
+          "section": "2.0.6"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "公共建筑节能设计标准",
+      "top1_section": "7.4（续8）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《公共建筑节能设计标准》第4.1.11条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "公共建筑节能设计标准",
+          "content_type": "body",
+          "section": "4.1.11"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "公共建筑节能设计标准",
+      "top1_section": "7.4（续2）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《公共服务设施嵌入“平急两用”功能设计指南（试行）》第2.0.1条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "公共服务设施嵌入“平急两用”功能设计指南（试行）",
+          "content_type": "body",
+          "section": "2.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "公共服务设施嵌入“平急两用”功能设计指南（试行）",
+      "top1_section": "4.4.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《关于发布《北京地区建设工程规划设计通则》(试行)的通知》第5.1.3条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "关于发布《北京地区建设工程规划设计通则》(试行)的通知",
+          "content_type": "body",
+          "section": "5.1.3"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "关于发布《北京地区建设工程规划设计通则》(试行)的通知",
+      "top1_section": "8.3.4（续1）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《北京市公共汽电车场站综合利用规划设计指南》第1.0.3条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "北京市公共汽电车场站综合利用规划设计指南",
+          "content_type": "body",
+          "section": "1.0.3"
+        }
+      ],
+      "rank": 5,
+      "required_recall": 1.0,
+      "top1_title": "北京市公共汽电车场站综合利用规划设计指南",
+      "top1_section": "1.0.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《国土空间调查、规划、用途管制用地分类标准》第4.1.4条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "国土空间调查、规划、用途管制用地分类标准",
+          "content_type": "body",
+          "section": "4.1.4"
+        }
+      ],
+      "rank": 10,
+      "required_recall": 1.0,
+      "top1_title": "国土空间调查、规划、用途管制用地分类标准",
+      "top1_section": "4.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《城市道路空间规划设计标准》第1.0.2条主要规定了什么？",
+      "category": "clause_lookup",
+      "expected": [
+        {
+          "title": "城市道路空间规划设计标准",
+          "content_type": "body",
+          "section": "1.0.2"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "城市道路空间规划设计标准",
+      "top1_section": "4.3.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "海绵城市规划目标包括哪些内容？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "海绵城市规划编制与评估标准",
+          "content_type": "body",
+          "section": "4.2.1"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "海绵城市规划编制与评估标准",
+      "top1_section": "4.2.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "城市总体规划中的海绵城市规划应包括哪些内容？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "海绵城市规划编制与评估标准",
+          "content_type": "body",
+          "section": "3.1.1"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "海绵城市规划编制与评估标准",
+      "top1_section": "3.1.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "海绵城市专项规划应包括哪些内容？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "海绵城市规划编制与评估标准",
+          "content_type": "body",
+          "section": "3.1.3"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "海绵城市规划编制与评估标准",
+      "top1_section": "3.1.3",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "建筑日照计算的数据选用次序如何确定？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准",
+          "content_type": "body",
+          "section": "3.0.4"
+        }
+      ],
+      "rank": 2,
+      "required_recall": 1.0,
+      "top1_title": "建筑日照计算参数标准 - 表3.0.4 数据选用表",
+      "top1_section": "表3.0.4 数据选用表",
+      "top1_content_type": "table"
+    },
+    {
+      "query": "日照计算是否应采用计算机图形文件？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准",
+          "content_type": "body",
+          "section": "3.0.5"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "建筑日照计算参数标准",
+      "top1_section": "3.0.5",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "“平急两用”公共服务设施重点针对哪些设施？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "公共服务设施嵌入“平急两用”功能设计指南（试行）",
+          "content_type": "body",
+          "section": "1.0.3"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "公共服务设施嵌入“平急两用”功能设计指南（试行）",
+      "top1_section": "1.0.3",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "“三区两通道”具体包括什么？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "公共服务设施嵌入“平急两用”功能设计指南（试行）",
+          "content_type": "body",
+          "section": "2.0.4"
+        }
+      ],
+      "rank": 2,
+      "required_recall": 1.0,
+      "top1_title": "公共服务设施嵌入“平急两用”功能设计指南（试行）",
+      "top1_section": "4.5.2.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "“平急两用”设施通过哪些措施转换为应急避难场所？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "公共服务设施嵌入“平急两用”功能设计指南（试行）",
+          "content_type": "body",
+          "section": "1.0.2"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "公共服务设施嵌入“平急两用”功能设计指南（试行）",
+      "top1_section": "1.0.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "公共汽电车场站综合利用指南是否适用于中途站？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "北京市公共汽电车场站综合利用规划设计指南",
+          "content_type": "body",
+          "section": "1.0.2"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "北京市公共汽电车场站综合利用规划设计指南",
+      "top1_section": "1.0.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "公共汽电车场站综合利用规划设计应坚持哪些原则？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "北京市公共汽电车场站综合利用规划设计指南",
+          "content_type": "body",
+          "section": "1.0.3"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "北京市公共汽电车场站综合利用规划设计指南",
+      "top1_section": "1.0.3",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "用地同时具备多种用途时应如何归类？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "国土空间调查、规划、用途管制用地分类标准",
+          "content_type": "body",
+          "section": "4.1.1"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "国土空间调查、规划、用途管制用地分类标准",
+      "top1_section": "4.1.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "国土空间详细规划原则上使用哪几级用地分类？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "国土空间调查、规划、用途管制用地分类标准",
+          "content_type": "body",
+          "section": "4.1.2"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "国土空间调查、规划、用途管制用地分类标准",
+      "top1_section": "4.1.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "什么是国土空间规划？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "国土空间调查、规划、用途管制用地分类标准",
+          "content_type": "body",
+          "section": "3.3"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "国土空间调查、规划、用途管制用地分类标准",
+      "top1_section": "3.3",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "什么是国土空间用途管制？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "国土空间调查、规划、用途管制用地分类标准",
+          "content_type": "body",
+          "section": "3.4"
+        }
+      ],
+      "rank": 4,
+      "required_recall": 1.0,
+      "top1_title": "国土空间调查、规划、用途管制用地分类标准",
+      "top1_section": "4.5",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "建筑日照计算标准适用于哪些建筑和场地？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准",
+          "content_type": "body",
+          "section": "1.0.2"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "建筑日照计算参数标准",
+      "top1_section": "1.0.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "海绵城市规划编制与评估标准适用于哪些规划层级？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "海绵城市规划编制与评估标准",
+          "content_type": "body",
+          "section": "1.0.2"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "海绵城市规划编制与评估标准",
+      "top1_section": "1.0.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "社区养老服务设施的公共活动用房应满足哪些基本要求？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "社区养老服务设施设计标准",
+          "content_type": "body",
+          "section": "6.3.4"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "社区养老服务设施设计标准",
+      "top1_section": "6.3.4",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "社区养老设施的活动用房是否需要备用照明？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "社区养老服务设施设计标准",
+          "content_type": "body",
+          "section": "6.6.3"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "社区养老服务设施设计标准",
+      "top1_section": "6.6.3（续1）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "社区养老设施的公共活动用房是否应设置紧急呼叫装置？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "社区养老服务设施设计标准",
+          "content_type": "body",
+          "section": "6.6.3"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "社区养老服务设施设计标准",
+      "top1_section": "6.6.3（续1）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "什么是“平急两用”公共服务设施？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "公共服务设施嵌入“平急两用”功能设计指南（试行）",
+          "content_type": "body",
+          "section": "2.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "公共服务设施嵌入“平急两用”功能设计指南（试行）",
+      "top1_section": "3.0.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "海绵城市建设设计应遵循什么原则？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "海绵城市建设设计标准",
+          "content_type": "body",
+          "section": "3.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "海绵城市建设设计标准",
+      "top1_section": "1.0.3",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "步行和自行车交通环境规划设计的基本原则是什么？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "步行和自行车交通环境规划设计标准",
+          "content_type": "body",
+          "section": "3.0.1"
+        }
+      ],
+      "rank": 4,
+      "required_recall": 1.0,
+      "top1_title": "步行和自行车交通环境规划设计标准",
+      "top1_section": "5.10.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "城市道路空间规划设计的基本原则是什么？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "城市道路空间规划设计标准",
+          "content_type": "body",
+          "section": "3.0.1"
+        }
+      ],
+      "rank": 3,
+      "required_recall": 1.0,
+      "top1_title": "城市道路空间规划设计标准",
+      "top1_section": "1.0.3",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "住宅全装修设计的基本规定是什么？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "住宅全装修设计标准",
+          "content_type": "body",
+          "section": "3.0.1"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "住宅全装修设计标准",
+      "top1_section": "1.0.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "居住区无障碍设计的基本要求是什么？",
+      "category": "business_paraphrase",
+      "expected": [
+        {
+          "title": "居住区无障碍设计规程",
+          "content_type": "body",
+          "section": "3.0.1"
+        }
+      ],
+      "rank": 6,
+      "required_recall": 1.0,
+      "top1_title": "居住区无障碍设计规程",
+      "top1_section": "1.0.4",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "已建建筑进行日照计算时，数据选用表中的优先顺序是什么？",
+      "category": "table",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准 - 表3.0.4 数据选用表",
+          "content_type": "table",
+          "section": "表3.0.4 数据选用表",
+          "asset_id": "28c462afc3ba13b2-p0013-t01"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "建筑日照计算参数标准 - 表3.0.4 数据选用表",
+      "top1_section": "表3.0.4 数据选用表",
+      "top1_content_type": "table"
+    },
+    {
+      "query": "在建建筑日照计算优先选用什么图纸？",
+      "category": "table",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准 - 表3.0.4 数据选用表",
+          "content_type": "table",
+          "section": "表3.0.4 数据选用表",
+          "asset_id": "28c462afc3ba13b2-p0013-t01"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "建筑日照计算参数标准 - 表3.0.4 数据选用表",
+      "top1_section": "表3.0.4 数据选用表",
+      "top1_content_type": "table"
+    },
+    {
+      "query": "已规划建筑日照计算优先选用什么图纸？",
+      "category": "table",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准 - 表3.0.4 数据选用表",
+          "content_type": "table",
+          "section": "表3.0.4 数据选用表",
+          "asset_id": "28c462afc3ba13b2-p0013-t01"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "建筑日照计算参数标准 - 表3.0.4 数据选用表",
+      "top1_section": "表3.0.4 数据选用表",
+      "top1_content_type": "table"
+    },
+    {
+      "query": "日照计算数据选用表区分了哪些建设阶段？",
+      "category": "table",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准 - 表3.0.4 数据选用表",
+          "content_type": "table",
+          "section": "表3.0.4 数据选用表",
+          "asset_id": "28c462afc3ba13b2-p0013-t01"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "建筑日照计算参数标准 - 表3.0.4 数据选用表",
+      "top1_section": "表3.0.4 数据选用表",
+      "top1_content_type": "table"
+    },
+    {
+      "query": "社区养老设施公共活动用房的照度值是多少？",
+      "category": "table",
+      "expected": [
+        {
+          "title": "社区养老服务设施设计标准 - 表6.6.3 社区养老设施建筑生活、活动及辅助空间照度值",
+          "content_type": "table",
+          "section": "表6.6.3 社区养老设施建筑生活、活动及辅助空间照度值",
+          "asset_id": "46c63f8fa562f8f7-p0023-t01"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "社区养老服务设施设计标准",
+      "top1_section": "6.6.3（续1）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "社区养老设施卫生间的照度值是多少？",
+      "category": "table",
+      "expected": [
+        {
+          "title": "社区养老服务设施设计标准 - 表6.6.3 社区养老设施建筑生活、活动及辅助空间照度值",
+          "content_type": "table",
+          "section": "表6.6.3 社区养老设施建筑生活、活动及辅助空间照度值",
+          "asset_id": "46c63f8fa562f8f7-p0023-t01"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "社区养老服务设施设计标准",
+      "top1_section": "6.6.3（续1）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "社区养老设施门厅走廊的照度值范围是多少？",
+      "category": "table",
+      "expected": [
+        {
+          "title": "社区养老服务设施设计标准 - 表6.6.3 社区养老设施建筑生活、活动及辅助空间照度值",
+          "content_type": "table",
+          "section": "表6.6.3 社区养老设施建筑生活、活动及辅助空间照度值",
+          "asset_id": "46c63f8fa562f8f7-p0023-t01"
+        }
+      ],
+      "rank": 6,
+      "required_recall": 1.0,
+      "top1_title": "社区养老服务设施设计标准",
+      "top1_section": "6.6.3（续1）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "社区养老设施生活用房和公共厨房照度值分别是多少？",
+      "category": "table",
+      "expected": [
+        {
+          "title": "社区养老服务设施设计标准 - 表6.6.3 社区养老设施建筑生活、活动及辅助空间照度值",
+          "content_type": "table",
+          "section": "表6.6.3 社区养老设施建筑生活、活动及辅助空间照度值",
+          "asset_id": "46c63f8fa562f8f7-p0023-t01"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "社区养老服务设施设计标准 - 表6.6.3 社区养老设施建筑生活、活动及辅助空间照度值",
+      "top1_section": "表6.6.3 社区养老设施建筑生活、活动及辅助空间照度值",
+      "top1_content_type": "table"
+    },
+    {
+      "query": "建筑朝向与正南夹角0至20度时，新建区的建筑间距系数是多少？",
+      "category": "table",
+      "expected": [
+        {
+          "title": "北京市生活居住建筑间距暂行规定 - PDF第5页表格1",
+          "content_type": "table",
+          "section": "PDF第5页表格1",
+          "asset_id": "525745b5dd361839-p0005-t01"
+        }
+      ],
+      "rank": 7,
+      "required_recall": 1.0,
+      "top1_title": "关于发布《北京地区建设工程规划设计通则》(试行)的通知",
+      "top1_section": "2.4.1（续2）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "建筑朝向与正南夹角20度以上至60度时，改建区间距系数是多少？",
+      "category": "table",
+      "expected": [
+        {
+          "title": "北京市生活居住建筑间距暂行规定 - PDF第5页表格1",
+          "content_type": "table",
+          "section": "PDF第5页表格1",
+          "asset_id": "525745b5dd361839-p0005-t01"
+        }
+      ],
+      "rank": 7,
+      "required_recall": 1.0,
+      "top1_title": "关于发布《北京地区建设工程规划设计通则》(试行)的通知",
+      "top1_section": "2.4.1（续2）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "遮挡阳光建筑群长高比2.5以上时，新建区间距系数是多少？",
+      "category": "table",
+      "expected": [
+        {
+          "title": "北京市生活居住建筑间距暂行规定 - PDF第5页表格2",
+          "content_type": "table",
+          "section": "PDF第5页表格2",
+          "asset_id": "525745b5dd361839-p0005-t02"
+        }
+      ],
+      "rank": 8,
+      "required_recall": 1.0,
+      "top1_title": "关于发布《北京地区建设工程规划设计通则》(试行)的通知",
+      "top1_section": "1.6",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "遮挡阳光建筑群长高比1.0以下时，改建区间距系数是多少？",
+      "category": "table",
+      "expected": [
+        {
+          "title": "北京市生活居住建筑间距暂行规定 - PDF第5页表格2",
+          "content_type": "table",
+          "section": "PDF第5页表格2",
+          "asset_id": "525745b5dd361839-p0005-t02"
+        }
+      ],
+      "rank": 10,
+      "required_recall": 1.0,
+      "top1_title": "关于发布《北京地区建设工程规划设计通则》(试行)的通知",
+      "top1_section": "1.6",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "建筑朝向与正南夹角60度以上时，建筑间距系数是多少？",
+      "category": "table",
+      "expected": [
+        {
+          "title": "北京市生活居住建筑间距暂行规定 - PDF第6页表格1",
+          "content_type": "table",
+          "section": "PDF第6页表格1",
+          "asset_id": "525745b5dd361839-p0006-t01"
+        }
+      ],
+      "rank": 7,
+      "required_recall": 1.0,
+      "top1_title": "关于发布《北京地区建设工程规划设计通则》(试行)的通知",
+      "top1_section": "2.4.1（续2）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "建筑日照计算参数标准的标准号和实施日期是什么？",
+      "category": "table",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准 - 批准发布的北京市地方标准目录（2019年标字第4号、总第242号）",
+          "content_type": "table",
+          "section": "批准发布的北京市地方标准目录（2019年标字第4号、总第242号）",
+          "asset_id": "28c462afc3ba13b2-p0005-t01"
+        }
+      ],
+      "rank": 8,
+      "required_recall": 1.0,
+      "top1_title": "建筑日照计算参数标准",
+      "top1_section": "1.0.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "批准发布的北京市地方标准目录中，建筑日照计算参数标准是哪一项？",
+      "category": "table",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准 - 批准发布的北京市地方标准目录（2019年标字第4号、总第242号）",
+          "content_type": "table",
+          "section": "批准发布的北京市地方标准目录（2019年标字第4号、总第242号）",
+          "asset_id": "28c462afc3ba13b2-p0005-t01"
+        }
+      ],
+      "rank": 4,
+      "required_recall": 1.0,
+      "top1_title": "建筑日照计算参数标准",
+      "top1_section": "前置材料（续1）",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "日照计算技术图示中，屋顶突出物是否需要纳入模型？",
+      "category": "figure",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准 - 图4.0.2~4.0.7-1",
+          "content_type": "figure",
+          "section": "图4.0.2~4.0.7-1 -1",
+          "asset_id": "28c462afc3ba13b2-p0027-f01"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "建筑日照计算参数标准 - 图4.0.2~4.0.7-1",
+      "top1_section": "图4.0.2~4.0.7-1 -1",
+      "top1_content_type": "figure"
+    },
+    {
+      "query": "复杂建筑形体在日照计算中如何进行合理简化？",
+      "category": "figure",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准 - 图4.0.2~4.0.7-2",
+          "content_type": "figure",
+          "section": "图4.0.2~4.0.7-2 -2",
+          "asset_id": "28c462afc3ba13b2-p0027-f02"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "建筑日照计算参数标准",
+      "top1_section": "4.0.1",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "哪张示意图解释了北京大寒日扫掠角变化？",
+      "category": "figure",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准 - 图5.0.1-3",
+          "content_type": "figure",
+          "section": "图5.0.1-3 扫掠角及北京市大寒日扫掠角示意",
+          "asset_id": "28c462afc3ba13b2-p0030-f01"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "建筑日照计算参数标准 - 图5.0.1-3",
+      "top1_section": "图5.0.1-3 扫掠角及北京市大寒日扫掠角示意",
+      "top1_content_type": "figure"
+    },
+    {
+      "query": "阳台和窗的日照计算基准面如何选取？",
+      "category": "figure",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准 - 图5.0.3-1",
+          "content_type": "figure",
+          "section": "图5.0.3-1 阳台、窗的计算基准面",
+          "asset_id": "28c462afc3ba13b2-p0033-f01"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "建筑日照计算参数标准",
+      "top1_section": "5.0.3",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "异型阳台和异型窗的计算基准面如何确定？",
+      "category": "figure",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准 - 图5.0.3-2",
+          "content_type": "figure",
+          "section": "图5.0.3-2 异型阳台、异型窗的计算基准面",
+          "asset_id": "28c462afc3ba13b2-p0033-f02"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "建筑日照计算参数标准",
+      "top1_section": "5.0.3",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "住宅阳台、窗的日照计算起点位于多高？",
+      "category": "figure",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准 - 图5.0.4",
+          "content_type": "figure",
+          "section": "图5.0.4 阳台、窗的计算起点",
+          "asset_id": "28c462afc3ba13b2-p0033-f03"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "建筑日照计算参数标准",
+      "top1_section": "5.0.4",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "日照计算的数据选用规则和对应表格分别在哪里？",
+      "category": "multi_evidence",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准",
+          "content_type": "body",
+          "section": "3.0.4"
+        },
+        {
+          "title": "建筑日照计算参数标准 - 表3.0.4 数据选用表",
+          "content_type": "table",
+          "asset_id": "28c462afc3ba13b2-p0013-t01"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "建筑日照计算参数标准",
+      "top1_section": "3.0.4",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "社区养老设施活动空间照明要求和照度表分别在哪里？",
+      "category": "multi_evidence",
+      "expected": [
+        {
+          "title": "社区养老服务设施设计标准",
+          "content_type": "body",
+          "section": "6.6.3"
+        },
+        {
+          "title": "社区养老服务设施设计标准 - 表6.6.3 社区养老设施建筑生活、活动及辅助空间照度值",
+          "content_type": "table",
+          "asset_id": "46c63f8fa562f8f7-p0023-t01"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "社区养老服务设施设计标准 - 表6.6.3 社区养老设施建筑生活、活动及辅助空间照度值",
+      "top1_section": "表6.6.3 社区养老设施建筑生活、活动及辅助空间照度值",
+      "top1_content_type": "table"
+    },
+    {
+      "query": "阳台窗日照计算基准面的文字条款和示意图分别在哪里？",
+      "category": "multi_evidence",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准",
+          "content_type": "body",
+          "section": "5.0.3"
+        },
+        {
+          "title": "建筑日照计算参数标准 - 图5.0.3-1",
+          "content_type": "figure",
+          "asset_id": "28c462afc3ba13b2-p0033-f01"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "建筑日照计算参数标准 - 图5.0.3-1",
+      "top1_section": "图5.0.3-1 阳台、窗的计算基准面",
+      "top1_content_type": "figure"
+    },
+    {
+      "query": "阳台窗日照计算起点的文字条款和示意图分别在哪里？",
+      "category": "multi_evidence",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准",
+          "content_type": "body",
+          "section": "5.0.4"
+        },
+        {
+          "title": "建筑日照计算参数标准 - 图5.0.4",
+          "content_type": "figure",
+          "asset_id": "28c462afc3ba13b2-p0033-f03"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "建筑日照计算参数标准 - 图5.0.4",
+      "top1_section": "图5.0.4 阳台、窗的计算起点",
+      "top1_content_type": "figure"
+    },
+    {
+      "query": "《建筑日照计算参数标准》的适用范围是什么？",
+      "category": "scope",
+      "expected": [
+        {
+          "title": "建筑日照计算参数标准",
+          "content_type": "body",
+          "section": "1.0.2"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "建筑日照计算参数标准",
+      "top1_section": "1.0.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《海绵城市规划编制与评估标准》的适用范围是什么？",
+      "category": "scope",
+      "expected": [
+        {
+          "title": "海绵城市规划编制与评估标准",
+          "content_type": "body",
+          "section": "1.0.2"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "海绵城市规划编制与评估标准",
+      "top1_section": "1.0.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《北京市公共汽电车场站综合利用规划设计指南》的适用范围是什么？",
+      "category": "scope",
+      "expected": [
+        {
+          "title": "北京市公共汽电车场站综合利用规划设计指南",
+          "content_type": "body",
+          "section": "1.0.2"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "北京市公共汽电车场站综合利用规划设计指南",
+      "top1_section": "1.0.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《公共服务设施嵌入“平急两用”功能设计指南（试行）》的适用范围是什么？",
+      "category": "scope",
+      "expected": [
+        {
+          "title": "公共服务设施嵌入“平急两用”功能设计指南（试行）",
+          "content_type": "body",
+          "section": "1.0.2"
+        }
+      ],
+      "rank": null,
+      "required_recall": 0.0,
+      "top1_title": "公共服务设施嵌入“平急两用”功能设计指南（试行）",
+      "top1_section": "1.0.3",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《绿色建筑设计标准》的适用范围是什么？",
+      "category": "scope",
+      "expected": [
+        {
+          "title": "绿色建筑设计标准",
+          "content_type": "body",
+          "section": "1.0.2"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "绿色建筑设计标准",
+      "top1_section": "1.0.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《住宅设计规范》的适用范围是什么？",
+      "category": "scope",
+      "expected": [
+        {
+          "title": "住宅设计规范",
+          "content_type": "body",
+          "section": "1.0.2"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "住宅设计规范",
+      "top1_section": "1.0.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《居住建筑节能设计标准》的适用范围是什么？",
+      "category": "scope",
+      "expected": [
+        {
+          "title": "居住建筑节能设计标准",
+          "content_type": "body",
+          "section": "1.0.2"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "居住建筑节能设计标准",
+      "top1_section": "1.0.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《海绵城市建设设计标准》的适用范围是什么？",
+      "category": "scope",
+      "expected": [
+        {
+          "title": "海绵城市建设设计标准",
+          "content_type": "body",
+          "section": "1.0.2"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "海绵城市建设设计标准",
+      "top1_section": "1.0.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《社区养老服务设施设计标准》的适用范围是什么？",
+      "category": "scope",
+      "expected": [
+        {
+          "title": "社区养老服务设施设计标准",
+          "content_type": "body",
+          "section": "1.0.2"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "社区养老服务设施设计标准",
+      "top1_section": "1.0.2",
+      "top1_content_type": "body"
+    },
+    {
+      "query": "《城市道路空间规划设计标准》的适用范围是什么？",
+      "category": "scope",
+      "expected": [
+        {
+          "title": "城市道路空间规划设计标准",
+          "content_type": "body",
+          "section": "1.0.2"
+        }
+      ],
+      "rank": 1,
+      "required_recall": 1.0,
+      "top1_title": "城市道路空间规划设计标准",
+      "top1_section": "1.0.2",
+      "top1_content_type": "body"
+    }
+  ]
+}

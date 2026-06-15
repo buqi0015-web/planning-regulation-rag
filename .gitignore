@@ -1,0 +1,27 @@
+__pycache__/
+*.py[cod]
+.env
+data/rag.db
+logs/
+
+# Do not publish source regulations, generated knowledge, local paths, or review artifacts.
+data/*
+!data/source/
+!data/source/**
+!data/eval/
+data/eval/*
+!data/eval/questions.jsonl
+!data/eval/formal_retrieval_v1.jsonl
+!data/eval/formal_answer_review_v1.csv
+!data/eval/reports/
+data/eval/reports/*
+!data/eval/reports/formal_baseline_v1.json
+!data/eval/reports/formal_iteration_v1.json
+
+# Keep the public repository focused on implementation and technical evidence.
+docs/*
+!docs/从0到1搭建指南.md
+!docs/基线评测方法.md
+!docs/复杂资产处理流程.md
+!docs/正式评测报告_v1.md
+!docs/真实项目拆解与技术选型.md

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="北京市规划法规智能检索与辅助问答">
+  <title>规查 · 北京市规划法规助手</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#conversation">跳到对话内容</a>
+  <div class="app-shell">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-head">
+        <a class="brand" href="/">
+          <span class="brand-mark">规</span>
+          <span><strong>规查</strong><small>北京市规划法规助手</small></span>
+        </a>
+        <button id="closeSidebarButton" class="icon-button mobile-only" aria-label="关闭侧栏">×</button>
+      </div>
+
+      <button id="newChatButton" class="new-chat-button">
+        <span>＋</span>
+        新建查询
+      </button>
+
+      <div class="history-section">
+        <div class="history-label">历史记录</div>
+        <div id="historyList" class="history-list" aria-live="polite">
+          <div class="history-empty">暂无历史查询</div>
+        </div>
+      </div>
+
+      <div class="sidebar-foot">
+        <div class="service-state" aria-live="polite"><i></i><span>北京市法规知识库已连接</span></div>
+        <p>辅助检索结果不替代正式审批意见</p>
+      </div>
+    </aside>
+
+    <section id="chatWorkspace" class="chat-workspace">
+      <header class="topbar">
+        <div class="topbar-title">
+          <button id="openSidebarButton" class="icon-button mobile-only" aria-label="打开侧栏">☰</button>
+          <div><strong id="conversationTitle">规划法规助手</strong><small>回答均附法规依据</small></div>
+        </div>
+        <button id="evidenceButton" class="evidence-button hidden">
+          查看依据
+          <span id="evidenceCount">0</span>
+        </button>
+      </header>
+
+      <div id="chatColumn" class="chat-column">
+        <div id="conversation" class="conversation">
+          <section id="emptyState" class="empty-state">
+            <span class="empty-mark">规</span>
+            <h1>有什么规划法规问题？</h1>
+            <p>描述具体场景，我会查询相关规范并提供原文依据。</p>
+            <div class="suggestion-grid">
+              <button class="suggestion">
+                <strong>日照计算应优先选用什么数据？</strong>
+                <span>查询数据选用顺序</span>
+              </button>
+              <button class="suggestion">
+                <strong>住宅日照计算是否应采用图形文件？</strong>
+                <span>核验计算资料要求</span>
+              </button>
+              <button class="suggestion">
+                <strong>海绵城市专项规划包括哪些内容？</strong>
+                <span>查询规划编制要求</span>
+              </button>
+              <button class="suggestion">
+                <strong>居住区公共服务设施如何配置？</strong>
+                <span>查询设施配置依据</span>
+              </button>
+            </div>
+          </section>
+          <div id="messageList" class="message-list"></div>
+        </div>
+
+        <div class="composer-wrap">
+          <div class="composer">
+            <textarea id="question" name="planning-question" rows="1" aria-label="法规问题" autocomplete="off" placeholder="输入规划法规问题…"></textarea>
+            <button id="askButton" aria-label="发送查询">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 14-7-4 14-3-6-7-1Z"/></svg>
+            </button>
+          </div>
+          <p>规查可能存在遗漏，请结合原文并以主管部门正式文件为准。</p>
+        </div>
+      </div>
+
+      <aside id="evidencePanel" class="evidence-panel">
+        <div class="evidence-head">
+          <div><strong>法规依据</strong><small id="resultCount">0 条相关依据</small></div>
+          <button id="closeEvidenceButton" class="icon-button" aria-label="关闭依据面板">×</button>
+        </div>
+        <div id="retrievalResults" class="source-list" aria-live="polite">
+          <div class="source-empty">查询后将在这里显示法规依据。</div>
+        </div>
+      </aside>
+    </section>
+  </div>
+
+  <div id="sidebarBackdrop" class="backdrop"></div>
+  <div id="toast" class="toast" aria-live="polite">已复制回答</div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

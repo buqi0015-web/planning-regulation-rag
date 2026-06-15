@@ -1,0 +1,5 @@
+{"query":"海绵城市规划目标包括哪些内容？","category":"body_clause","expected_title":"海绵城市规划编制与评估标准","expected_section":"4.2.1","expected_content_type":"body"}
+{"query":"城市总体规划中的海绵城市规划应包括哪些内容？","category":"body_clause","expected_title":"海绵城市规划编制与评估标准","expected_section":"3.1.1","expected_content_type":"body"}
+{"query":"海绵城市专项规划应包括哪些内容？","category":"body_clause","expected_title":"海绵城市规划编制与评估标准","expected_section":"3.1.3","expected_content_type":"body"}
+{"query":"建筑日照计算的数据选用次序如何确定？","category":"body_clause","expected_title":"建筑日照计算参数标准","expected_section":"3.0.4","expected_content_type":"body"}
+{"query":"日照计算是否应采用计算机图形文件？","category":"body_clause","expected_title":"建筑日照计算参数标准","expected_section":"3.0.5","expected_content_type":"body"}
