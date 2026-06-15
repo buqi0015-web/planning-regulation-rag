@@ -57,6 +57,7 @@ class RagCoreTests(unittest.TestCase):
         self.assertIn("有什么规划法规问题？", page.text)
         self.assertIn("历史记录", page.text)
         self.assertIn("新建查询", page.text)
+        self.assertIn("app.js?v=20260616-1", page.text)
         self.assertNotIn("示例市", page.text)
         self.assertNotIn("模拟评测", page.text)
         self.assertNotIn("系统核验路径", page.text)
@@ -64,6 +65,14 @@ class RagCoreTests(unittest.TestCase):
         self.assertEqual(status.json()["status"], "ok")
         self.assertNotIn("metrics", status.json())
         self.assertNotIn("simulated_evaluation", status.json())
+
+    def test_demo_request_has_timeout_and_cancel(self) -> None:
+        client = TestClient(app)
+        script = client.get("/static/app.js")
+        self.assertEqual(script.status_code, 200)
+        self.assertIn("REQUEST_TIMEOUT_MS", script.text)
+        self.assertIn("AbortController", script.text)
+        self.assertIn("cancelRequestButton", script.text)
 
 
 if __name__ == "__main__":

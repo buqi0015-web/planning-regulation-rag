@@ -78,7 +78,9 @@ class OpenAICompatibleEmbeddingProvider(EmbeddingProvider):
     def _request_embeddings(self, texts: list[str]) -> list[list[float]]:
         payload = json.dumps({"model": self.model, "input": texts}, ensure_ascii=False).encode("utf-8")
         last_error: Exception | None = None
-        for attempt in range(6):
+        attempts = max(1, int(os.getenv("EMBEDDING_MAX_RETRIES", "3")))
+        timeout = max(5, int(os.getenv("EMBEDDING_TIMEOUT_SECONDS", "20")))
+        for attempt in range(attempts):
             request = urllib.request.Request(
                 f"{self.base_url}/embeddings",
                 data=payload,
@@ -89,7 +91,7 @@ class OpenAICompatibleEmbeddingProvider(EmbeddingProvider):
                 },
             )
             try:
-                with urllib.request.urlopen(request, timeout=60) as response:
+                with urllib.request.urlopen(request, timeout=timeout) as response:
                     data: dict[str, Any] = json.loads(response.read().decode("utf-8"))
                 ordered = sorted(data["data"], key=lambda item: item.get("index", 0))
                 return [normalize_dense(item["embedding"]) for item in ordered]
@@ -105,8 +107,8 @@ class OpenAICompatibleEmbeddingProvider(EmbeddingProvider):
                 http.client.RemoteDisconnected,
             ) as error:
                 last_error = error
-                if attempt < 5:
-                    time.sleep(min(16, 2**attempt))
+                if attempt < attempts - 1:
+                    time.sleep(min(4, 2**attempt))
         raise RuntimeError(f"Embedding API 连续重试失败：{last_error}") from last_error
 
     def embed(self, text: str, *, is_query: bool = False) -> list[float]:

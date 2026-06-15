@@ -1,9 +1,11 @@
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
 const STORAGE_KEY = "guicha_conversations_v1";
+const REQUEST_TIMEOUT_MS = 60000;
 
 let conversations = loadConversations();
 let currentConversationId = null;
+let activeRequestController = null;
 
 function escapeHtml(value) {
   return String(value ?? "").replace(/[&<>"']/g, char => ({
@@ -108,8 +110,31 @@ function loadConversations() {
 
 function saveConversations() {
   conversations = conversations.slice(0, 30);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(conversations));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(conversations));
+  } catch {
+    conversations = conversations.slice(0, 10);
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(conversations));
+    } catch {
+      localStorage.removeItem(STORAGE_KEY);
+    }
+  }
   renderHistory();
+}
+
+function compactResults(results = []) {
+  return results.slice(0, 3).map(item => ({
+    title: item.title,
+    section: item.section,
+    content: String(item.content || "").slice(0, 500),
+    metadata: {
+      content_type: item.metadata?.content_type,
+      status: item.metadata?.status,
+      page: item.metadata?.page,
+      source_url: item.metadata?.source_url
+    }
+  }));
 }
 
 function newId() {
@@ -204,9 +229,14 @@ function renderLoading() {
   $("#messageList").insertAdjacentHTML("beforeend", `
     <div id="loadingMessage" class="message assistant-message">
       <span class="assistant-avatar">规</span>
-      <div class="loading-dots"><i></i><i></i><i></i></div>
+      <div class="loading-state">
+        <div class="loading-dots"><i></i><i></i><i></i></div>
+        <span id="loadingText">正在检索相关法规…</span>
+        <button id="cancelRequestButton" type="button">取消</button>
+      </div>
     </div>
   `);
+  $("#cancelRequestButton").addEventListener("click", () => activeRequestController?.abort());
   scrollConversation();
 }
 
@@ -237,25 +267,40 @@ async function ask(queryOverride = "") {
   renderLoading();
   saveConversations();
 
+  activeRequestController = new AbortController();
+  const timeoutId = setTimeout(() => activeRequestController.abort(), REQUEST_TIMEOUT_MS);
+  const phaseTimer = setTimeout(() => {
+    const loadingText = $("#loadingText");
+    if (loadingText) loadingText.textContent = "正在整理证据并生成回答…";
+  }, 5000);
+
   try {
     const response = await fetch("/ask", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({query, top_k: 3, jurisdiction: "北京市"})
+      body: JSON.stringify({query, top_k: 3, jurisdiction: "北京市"}),
+      signal: activeRequestController.signal
     });
-    if (!response.ok) throw new Error("request failed");
+    if (!response.ok) throw new Error(`request failed: ${response.status}`);
     const data = await response.json();
-    conversation.messages.push({role: "assistant", content: data.answer, results: data.results});
+    const results = compactResults(data.results || []);
+    conversation.messages.push({role: "assistant", content: data.answer, results});
     conversation.updatedAt = Date.now();
     conversations = [conversation, ...conversations.filter(item => item.id !== conversation.id)];
     saveConversations();
     renderConversation();
-    if (data.results.length) openEvidence(data.results);
-  } catch {
-    conversation.messages.push({role: "assistant", content: "查询暂时失败，请稍后重试。", results: []});
+    if (results.length) openEvidence(results);
+  } catch (error) {
+    const content = error.name === "AbortError"
+      ? "本次查询等待时间过长，已自动停止。请缩短问题后重试，或检查模型 API 连接。"
+      : "查询暂时失败，请稍后重试。";
+    conversation.messages.push({role: "assistant", content, results: []});
     saveConversations();
     renderConversation();
   } finally {
+    clearTimeout(timeoutId);
+    clearTimeout(phaseTimer);
+    activeRequestController = null;
     $("#loadingMessage")?.remove();
     $("#askButton").disabled = false;
     input.focus();

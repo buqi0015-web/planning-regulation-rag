@@ -409,11 +409,17 @@ def _llm_answer(query: str, results: list[dict[str, Any]]) -> str | None:
     )
     prompt = (
         "你是城市规划法规知识库助手。只能根据证据回答；每个结论必须标注引用编号；"
-        "证据不足或冲突时必须明确说明；不得把建议当成正式审批结论。\n\n"
+        "证据不足或冲突时必须明确说明；不得把建议当成正式审批结论；"
+        "回答应直接、简洁，优先控制在400个中文字符以内，只保留关键结论、适用条件和引用。\n\n"
         f"问题：{query}\n\n证据：\n{evidence}"
     )
     payload = json.dumps(
-        {"model": model, "messages": [{"role": "user", "content": prompt}], "temperature": 0},
+        {
+            "model": model,
+            "messages": [{"role": "user", "content": prompt}],
+            "temperature": 0,
+            "max_tokens": 600,
+        },
         ensure_ascii=False,
     ).encode("utf-8")
     request = urllib.request.Request(
@@ -422,7 +428,7 @@ def _llm_answer(query: str, results: list[dict[str, Any]]) -> str | None:
         headers={"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"},
     )
     try:
-        with urllib.request.urlopen(request, timeout=45) as response:
+        with urllib.request.urlopen(request, timeout=35) as response:
             data = json.loads(response.read().decode("utf-8"))
         return data["choices"][0]["message"]["content"]
     except Exception:

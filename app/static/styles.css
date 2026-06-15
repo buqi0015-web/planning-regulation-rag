@@ -99,6 +99,10 @@ button { cursor: pointer; touch-action: manipulation; }
 .loading-dots i { width: 7px; height: 7px; border-radius: 50%; background: #90a49a; animation: pulse 1s infinite ease-in-out; }
 .loading-dots i:nth-child(2) { animation-delay: .15s; }
 .loading-dots i:nth-child(3) { animation-delay: .3s; }
+.loading-state { min-height: 40px; display: flex; align-items: center; gap: 12px; color: #687970; font-size: 13px; }
+.loading-state .loading-dots { flex: 0 0 auto; }
+.loading-state button { padding: 6px 9px; color: #687970; border: 1px solid #d8e1dc; border-radius: 7px; background: white; font-size: 12px; }
+.loading-state button:hover { color: var(--green); border-color: #b7cec3; background: var(--green-soft); }
 @keyframes pulse { 0%, 80%, 100% { opacity: .25; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
 
 .composer-wrap { position: absolute; z-index: 4; right: 0; bottom: 0; left: 0; padding: 30px 24px 12px; background: linear-gradient(transparent, white 28%); transition: right .2s ease; }
