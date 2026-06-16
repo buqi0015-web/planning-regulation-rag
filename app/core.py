@@ -12,6 +12,8 @@ from typing import Any
 
 from .config import ROOT
 from .providers import get_embedding_provider, lexical_terms
+from .query_understanding import QueryUnderstanding, understand_query
+from .reranker import get_reranker
 
 
 DB_PATH = ROOT / os.getenv("RAG_DB_PATH", "data/rag.db")
@@ -20,6 +22,7 @@ ARTICLE_RE = re.compile(r"(?m)^(第[一二三四五六七八九十百千万零�
 STANDARD_CLAUSE_RE = re.compile(r"(?m)^(\d+(?:\.\d+){1,3})\s+(.+)$")
 HEADING_RE = re.compile(r"(?m)^#{1,6}\s+(.+)$")
 EMBEDDING = get_embedding_provider()
+RERANKER = get_reranker()
 TABLE_INTENT_TERMS = (
     "表",
     "清单",
@@ -288,32 +291,35 @@ def _metadata_allowed(metadata: dict[str, Any], filters: dict[str, str] | None) 
 
 
 def query_wants_table(query: str) -> bool:
-    return any(term in query for term in TABLE_INTENT_TERMS)
+    return understand_query(query).content_intent == "table" or any(term in query for term in TABLE_INTENT_TERMS)
 
 
 def query_wants_figure(query: str) -> bool:
-    return any(term in query for term in FIGURE_INTENT_TERMS)
+    return understand_query(query).content_intent == "figure" or any(term in query for term in FIGURE_INTENT_TERMS)
 
 
 def retrieve(query: str, top_k: int = 5, filters: dict[str, str] | None = None) -> list[dict[str, Any]]:
+    parsed = understand_query(query)
+    retrieval_query = parsed.expanded_query
+    candidate_limit = max(int(os.getenv("RERANKER_TOP_N", "50")), top_k * 4, 20)
     conn = connect()
     rows = conn.execute("SELECT * FROM chunks").fetchall()
-    vector = EMBEDDING.embed(query, is_query=True)
-    query_terms = set(lexical_terms(query))
+    vector = EMBEDDING.embed(retrieval_query, is_query=True)
+    query_terms = set(lexical_terms(retrieval_query))
     vector_ranked = sorted(
         rows,
         key=lambda row: cosine(vector, json.loads(row["vector_json"])),
         reverse=True,
-    )[: max(top_k * 4, 20)]
+    )[:candidate_limit]
     overlap_ranked = sorted(
         rows,
         key=lambda row: len(query_terms.intersection(row["search_text"].split()))
         / (len(query_terms) or 1),
         reverse=True,
-    )[: max(top_k * 4, 20)]
+    )[:candidate_limit]
 
     fts_rows: list[sqlite3.Row] = []
-    terms = lexical_terms(query)
+    terms = lexical_terms(retrieval_query)
     if terms:
         expression = " OR ".join(f'"{term}"' for term in dict.fromkeys(terms[:30]))
         try:
@@ -325,7 +331,7 @@ def retrieve(query: str, top_k: int = 5, filters: dict[str, str] | None = None) 
                 ORDER BY bm25(chunks_fts)
                 LIMIT ?
                 """,
-                (expression, max(top_k * 4, 20)),
+                (expression, candidate_limit),
             ).fetchall()
         except sqlite3.OperationalError:
             fts_rows = []
@@ -337,7 +343,7 @@ def retrieve(query: str, top_k: int = 5, filters: dict[str, str] | None = None) 
             scores[row["id"]] = scores.get(row["id"], 0.0) + weight / (60 + rank)
             row_by_id[row["id"]] = row
 
-    clause_references = set(CLAUSE_REFERENCE_RE.findall(query))
+    clause_references = set(CLAUSE_REFERENCE_RE.findall(retrieval_query))
     results: list[dict[str, Any]] = []
     for chunk_id, score in sorted(scores.items(), key=lambda item: item[1], reverse=True):
         row = row_by_id[chunk_id]
@@ -348,12 +354,12 @@ def retrieve(query: str, top_k: int = 5, filters: dict[str, str] | None = None) 
         authority_weight = 1 + (raw_authority_weight - 1) * 0.25
         content_type = metadata.get("content_type")
         if content_type == "table":
-            content_type_weight = 1.75 if query_wants_table(query) else 0.8
+            content_type_weight = 1.75 if parsed.content_intent == "table" else 0.8
         elif content_type == "figure":
-            content_type_weight = 1.75 if query_wants_figure(query) else 0.4
+            content_type_weight = 1.75 if parsed.content_intent == "figure" else 0.4
         else:
             content_type_weight = 1.0
-        title_weight = 1.35 if row["title"] in query else 1.0
+        title_weight = 1.35 if row["title"] in retrieval_query else 1.0
         section_weight = (
             3.0
             if any(row["section"] == clause or row["section"].startswith(f"{clause}（") for clause in clause_references)
@@ -366,6 +372,7 @@ def retrieve(query: str, top_k: int = 5, filters: dict[str, str] | None = None) 
                 "section": row["section"],
                 "content": row["content"],
                 "metadata": metadata,
+                "query_understanding": parsed.to_dict(),
                 "score": round(
                     score * authority_weight * content_type_weight * title_weight * section_weight,
                     6,
@@ -373,7 +380,10 @@ def retrieve(query: str, top_k: int = 5, filters: dict[str, str] | None = None) 
             }
         )
     conn.close()
-    return sorted(results, key=lambda item: item["score"], reverse=True)[:top_k]
+    ranked = sorted(results, key=lambda item: item["score"], reverse=True)[:candidate_limit]
+    if RERANKER.name != "none":
+        ranked = RERANKER.rerank(query, ranked)
+    return ranked[:top_k]
 
 
 def detect_conflicts(results: list[dict[str, Any]]) -> list[str]:
@@ -395,6 +405,41 @@ def _local_answer(query: str, results: list[dict[str, Any]]) -> str:
     lines.append(f"{compact[:500]}{'…' if len(compact) > 500 else ''} [1]")
     lines.append("以上为知识库辅助检索结果，不替代规划主管部门的正式解释或审批意见。")
     return "\n".join(lines)
+
+
+def assess_evidence_sufficiency(
+    query: str,
+    results: list[dict[str, Any]],
+    parsed: QueryUnderstanding | None = None,
+) -> dict[str, Any]:
+    parsed = parsed or understand_query(query)
+    if not results:
+        return {"sufficient": False, "reason": "知识库未检索到足够相关的现行有效依据。"}
+    top_score = float(results[0].get("score", 0.0))
+    if top_score < float(os.getenv("MIN_EVIDENCE_SCORE", "0.005")):
+        return {"sufficient": False, "reason": "检索结果相关性较弱，暂不生成结论。"}
+    if parsed.high_risk_intent:
+        return {
+            "sufficient": False,
+            "reason": "该问题涉及审批或最终合规判断，知识库只能提供可核验依据，不能替代主管部门结论。",
+        }
+    if "密云区" in parsed.jurisdictions and not any(
+        item["metadata"].get("jurisdiction") == "密云区" for item in results
+    ):
+        return {"sufficient": False, "reason": "当前结果未命中密云区资料，不能推断具体控规或地块结论。"}
+    if len(results) >= 3:
+        top_titles = {item["title"] for item in results[:3]}
+        if len(top_titles) == 3 and top_score < 0.02:
+            return {"sufficient": False, "reason": "候选依据分散，尚不足以形成稳定回答。"}
+    return {"sufficient": True, "reason": ""}
+
+
+def _insufficient_answer(reason: str) -> str:
+    return (
+        f"证据不足：{reason}\n"
+        "建议补充法规名称、条款号、适用地区或项目场景后重新查询。"
+        "以上为知识库辅助检索结果，不替代规划主管部门的正式解释或审批意见。"
+    )
 
 
 def _llm_answer(query: str, results: list[dict[str, Any]]) -> str | None:
@@ -436,9 +481,14 @@ def _llm_answer(query: str, results: list[dict[str, Any]]) -> str | None:
 
 
 def ask(query: str, top_k: int = 5, filters: dict[str, str] | None = None) -> dict[str, Any]:
+    parsed = understand_query(query)
     results = retrieve(query, top_k=top_k, filters=filters)
     conflicts = detect_conflicts(results)
-    answer = _llm_answer(query, results) or _local_answer(query, results)
+    evidence_check = assess_evidence_sufficiency(query, results, parsed)
+    if evidence_check["sufficient"]:
+        answer = _llm_answer(query, results) or _local_answer(query, results)
+    else:
+        answer = _insufficient_answer(str(evidence_check["reason"]))
     citations = [
         {
             "id": index,
@@ -453,7 +503,16 @@ def ask(query: str, top_k: int = 5, filters: dict[str, str] | None = None) -> di
         }
         for index, item in enumerate(results, start=1)
     ]
-    return {"question": query, "answer": answer, "citations": citations, "conflicts": conflicts, "results": results}
+    return {
+        "question": query,
+        "answer": answer,
+        "citations": citations,
+        "conflicts": conflicts,
+        "results": results,
+        "query_understanding": parsed.to_dict(),
+        "evidence_check": evidence_check,
+        "reranker": RERANKER.name,
+    }
 
 
 def evaluate(dataset_path: Path, top_k: int = 5) -> dict[str, Any]:

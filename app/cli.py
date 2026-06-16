@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 
 from .api_check import check_dashscope
+from .answer_eval import default_answer_eval_path, evaluate_answers
 from .core import ROOT, ask, evaluate, ingest_directory, prune_index, retrieve
 from .document_inventory import build_inventory
 from .pdf_parser import parse_pilots
@@ -64,6 +65,10 @@ def main() -> None:
     eval_parser.add_argument("--dataset", default="data/eval/questions.jsonl")
     eval_parser.add_argument("--top-k", type=int, default=5)
     eval_parser.add_argument("--output", default="", help="可选：将评测结果写入 JSON 文件")
+    answer_eval_parser = subparsers.add_parser("eval-answers", help="运行回答质量行为评测")
+    answer_eval_parser.add_argument("--dataset", default=str(default_answer_eval_path().relative_to(ROOT)))
+    answer_eval_parser.add_argument("--top-k", type=int, default=3)
+    answer_eval_parser.add_argument("--output", default="", help="可选：将评测结果写入 JSON 文件")
 
     args = parser.parse_args()
     if args.command == "ingest":
@@ -104,6 +109,12 @@ def main() -> None:
         result = retrieve(args.query, args.top_k)
     elif args.command == "ask":
         result = ask(args.query, args.top_k)
+    elif args.command == "eval-answers":
+        result = evaluate_answers(ROOT / Path(args.dataset), args.top_k)
+        if args.output:
+            output_path = ROOT / Path(args.output)
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            output_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
     else:
         result = evaluate(ROOT / Path(args.dataset), args.top_k)
         if args.output:

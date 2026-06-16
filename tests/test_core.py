@@ -9,7 +9,9 @@ os.environ["LLM_API_KEY"] = ""
 from fastapi.testclient import TestClient
 
 from app.api import app
-from app.core import ask, ingest_directory, query_wants_figure, query_wants_table, retrieve, split_regulation
+from app.answer_eval import evaluate_answers
+from app.core import ask, assess_evidence_sufficiency, ingest_directory, query_wants_figure, query_wants_table, retrieve, split_regulation
+from app.query_understanding import understand_query
 
 
 class RagCoreTests(unittest.TestCase):
@@ -47,6 +49,23 @@ class RagCoreTests(unittest.TestCase):
         result = ask("申请建设工程规划许可证需要哪些材料？", top_k=3)
         self.assertTrue(result["citations"])
         self.assertIn("[1]", result["answer"])
+        self.assertIn("query_understanding", result)
+        self.assertIn("evidence_check", result)
+
+    def test_query_understanding_expands_business_terms(self) -> None:
+        parsed = understand_query("密云养老设施怎么配？")
+        self.assertIn("密云区", parsed.jurisdictions)
+        self.assertIn("养老服务设施", parsed.business_entities)
+        self.assertIn("老年服务设施", parsed.synonyms)
+
+    def test_high_risk_question_abstains(self) -> None:
+        result = ask("某住宅项目一定能够通过日照审查吗？", top_k=3)
+        self.assertFalse(result["evidence_check"]["sufficient"])
+        self.assertIn("不能替代主管部门结论", result["answer"])
+
+    def test_evidence_sufficiency_rejects_empty_results(self) -> None:
+        result = assess_evidence_sufficiency("未知问题", [])
+        self.assertFalse(result["sufficient"])
 
     def test_demo_page_and_project_status(self) -> None:
         client = TestClient(app)
@@ -57,7 +76,7 @@ class RagCoreTests(unittest.TestCase):
         self.assertIn("有什么规划法规问题？", page.text)
         self.assertIn("历史记录", page.text)
         self.assertIn("新建查询", page.text)
-        self.assertIn("app.js?v=20260616-1", page.text)
+        self.assertIn("app.js?v=20260616-2", page.text)
         self.assertNotIn("示例市", page.text)
         self.assertNotIn("模拟评测", page.text)
         self.assertNotIn("系统核验路径", page.text)
@@ -73,6 +92,26 @@ class RagCoreTests(unittest.TestCase):
         self.assertIn("REQUEST_TIMEOUT_MS", script.text)
         self.assertIn("AbortController", script.text)
         self.assertIn("cancelRequestButton", script.text)
+        self.assertIn("submitFeedback", script.text)
+
+    def test_feedback_api(self) -> None:
+        client = TestClient(app)
+        response = client.post(
+            "/feedback",
+            json={
+                "query": "养老服务设施如何配置？",
+                "answer": "测试回答",
+                "rating": "helpful",
+                "citations": [],
+            },
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["status"], "ok")
+
+    def test_answer_eval_smoke(self) -> None:
+        result = evaluate_answers(os.path.join(os.getcwd(), "data/eval/answer_quality_v1.jsonl"))
+        self.assertEqual(result["cases"], 3)
+        self.assertIn("abstention_accuracy", result)
 
 
 if __name__ == "__main__":

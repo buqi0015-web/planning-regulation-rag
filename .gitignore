@@ -12,6 +12,7 @@ data/*
 data/eval/*
 !data/eval/questions.jsonl
 !data/eval/formal_retrieval_v1.jsonl
+!data/eval/answer_quality_v1.jsonl
 !data/eval/formal_answer_review_v1.csv
 !data/eval/reports/
 data/eval/reports/*

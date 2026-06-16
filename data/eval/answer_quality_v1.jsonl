@@ -1,0 +1,3 @@
+{"query":"申请建设工程规划许可证需要哪些材料？","category":"许可材料","must_cite":true,"should_abstain":false}
+{"query":"某住宅项目一定能够通过日照审查吗？","category":"高风险审批判断","must_cite":false,"should_abstain":true}
+{"query":"密云区某控规地块最终容积率是多少？","category":"未收录下位控规","must_cite":false,"should_abstain":true}

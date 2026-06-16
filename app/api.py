@@ -8,6 +8,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 from .core import EMBEDDING, ROOT, ask, connect, ingest_directory, retrieve
+from .feedback import save_feedback
 
 
 app = FastAPI(
@@ -23,6 +24,14 @@ class SearchRequest(BaseModel):
     query: str = Field(min_length=2)
     top_k: int = Field(default=5, ge=1, le=20)
     jurisdiction: str | None = None
+
+
+class FeedbackRequest(BaseModel):
+    query: str = Field(min_length=2)
+    answer: str = Field(min_length=1)
+    rating: str = Field(pattern="^(helpful|bad)$")
+    reason: str = ""
+    citations: list[dict[str, object]] = Field(default_factory=list)
 
 
 @app.get("/", include_in_schema=False)
@@ -125,3 +134,14 @@ def search(request: SearchRequest) -> dict[str, object]:
 def answer(request: SearchRequest) -> dict[str, object]:
     filters = {"jurisdiction": request.jurisdiction or "北京市"}
     return ask(request.query, request.top_k, filters)
+
+
+@app.post("/feedback")
+def feedback(request: FeedbackRequest) -> dict[str, object]:
+    return save_feedback(
+        query=request.query,
+        answer=request.answer,
+        rating=request.rating,
+        reason=request.reason,
+        citations=request.citations,
+    )

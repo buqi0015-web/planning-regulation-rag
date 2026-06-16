@@ -182,6 +182,7 @@ function renderConversation() {
           <div class="message-tools">
             <button data-copy-message="${index}">复制回答</button>
             ${message.results?.length ? `<button data-evidence-message="${index}">查看 ${message.results.length} 条依据</button>` : ""}
+            ${message.role === "assistant" ? `<button data-feedback-message="${index}" data-feedback-rating="helpful">有帮助</button><button data-feedback-message="${index}" data-feedback-rating="bad">不准确</button>` : ""}
           </div>
         </div>
       </div>
@@ -284,7 +285,14 @@ async function ask(queryOverride = "") {
     if (!response.ok) throw new Error(`request failed: ${response.status}`);
     const data = await response.json();
     const results = compactResults(data.results || []);
-    conversation.messages.push({role: "assistant", content: data.answer, results});
+    conversation.messages.push({
+      role: "assistant",
+      content: data.answer,
+      query,
+      results,
+      citations: data.citations || [],
+      evidenceCheck: data.evidence_check || {}
+    });
     conversation.updatedAt = Date.now();
     conversations = [conversation, ...conversations.filter(item => item.id !== conversation.id)];
     saveConversations();
@@ -294,7 +302,7 @@ async function ask(queryOverride = "") {
     const content = error.name === "AbortError"
       ? "本次查询等待时间过长，已自动停止。请缩短问题后重试，或检查模型 API 连接。"
       : "查询暂时失败，请稍后重试。";
-    conversation.messages.push({role: "assistant", content, results: []});
+    conversation.messages.push({role: "assistant", content, query, results: [], citations: []});
     saveConversations();
     renderConversation();
   } finally {
@@ -347,9 +355,30 @@ function closeSidebar() {
   document.body.classList.remove("sidebar-open");
 }
 
-function showToast() {
+function showToast(message = "已复制回答") {
+  $("#toast").textContent = message;
   $("#toast").classList.add("show");
   setTimeout(() => $("#toast").classList.remove("show"), 1500);
+}
+
+async function submitFeedback(message, rating) {
+  try {
+    const response = await fetch("/feedback", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        query: message.query || "",
+        answer: message.content || "",
+        rating,
+        reason: rating === "bad" ? "用户标记不准确" : "",
+        citations: message.citations || []
+      })
+    });
+    if (!response.ok) throw new Error(`feedback failed: ${response.status}`);
+    showToast(rating === "helpful" ? "已记录：有帮助" : "已记录：不准确");
+  } catch {
+    showToast("反馈提交失败");
+  }
 }
 
 $("#newChatButton").addEventListener("click", startNewChat);
@@ -371,6 +400,7 @@ $("#historyList").addEventListener("click", event => {
 $("#messageList").addEventListener("click", async event => {
   const copyButton = event.target.closest("[data-copy-message]");
   const evidenceMessage = event.target.closest("[data-evidence-message]");
+  const feedbackButton = event.target.closest("[data-feedback-message]");
   const conversation = currentConversation();
   if (copyButton && conversation) {
     await navigator.clipboard.writeText(conversation.messages[Number(copyButton.dataset.copyMessage)].content);
@@ -378,6 +408,10 @@ $("#messageList").addEventListener("click", async event => {
   }
   if (evidenceMessage && conversation) {
     openEvidence(conversation.messages[Number(evidenceMessage.dataset.evidenceMessage)].results || []);
+  }
+  if (feedbackButton && conversation) {
+    const message = conversation.messages[Number(feedbackButton.dataset.feedbackMessage)];
+    await submitFeedback(message, feedbackButton.dataset.feedbackRating);
   }
 });
 $("#evidenceButton").addEventListener("click", () => {
