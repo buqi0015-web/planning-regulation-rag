@@ -58,6 +58,17 @@ class RagCoreTests(unittest.TestCase):
         self.assertIn("养老服务设施", parsed.business_entities)
         self.assertIn("老年服务设施", parsed.synonyms)
 
+    def test_query_preprocessing_corrects_time_and_context(self) -> None:
+        parsed = understand_query(
+            "这个日昭要求现在还有效吗？",
+            {"previous_query": "密云区养老设施怎么配置"},
+        )
+        self.assertEqual(parsed.corrections["日昭"], "日照")
+        self.assertEqual(parsed.time_intent, "current")
+        self.assertTrue(parsed.needs_context_completion)
+        self.assertIn("密云区养老设施怎么配置", parsed.completed_query)
+        self.assertIn("日照", parsed.expanded_query)
+
     def test_high_risk_question_abstains(self) -> None:
         result = ask("某住宅项目一定能够通过日照审查吗？", top_k=3)
         self.assertFalse(result["evidence_check"]["sufficient"])
@@ -76,7 +87,7 @@ class RagCoreTests(unittest.TestCase):
         self.assertIn("把规划法规问题，落到可核验依据。", page.text)
         self.assertIn("历史记录", page.text)
         self.assertIn("新建查询", page.text)
-        self.assertIn("app.js?v=20260617-1", page.text)
+        self.assertIn("app.js?v=20260617-2", page.text)
         self.assertNotIn("示例市", page.text)
         self.assertNotIn("模拟评测", page.text)
         self.assertNotIn("系统核验路径", page.text)
