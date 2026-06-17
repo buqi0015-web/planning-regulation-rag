@@ -169,7 +169,7 @@ function renderHistory() {
 function renderConversation() {
   const conversation = currentConversation();
   $("#emptyState").classList.toggle("hidden", Boolean(conversation?.messages.length));
-  $("#conversationTitle").textContent = conversation?.title || "规划法规助手";
+  $("#conversationTitle").textContent = conversation?.title || "法规检索工作台";
   $("#messageList").innerHTML = conversation?.messages.map((message, index) => {
     if (message.role === "user") {
       return `<div class="message user-message"><div class="user-bubble">${escapeHtml(message.content)}</div></div>`;
