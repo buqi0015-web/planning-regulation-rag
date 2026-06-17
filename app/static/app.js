@@ -90,7 +90,7 @@ function cleanExcerpt(item) {
     .replace(/\b[0-9a-f]{12,}-p\d{4}(?:-[tf]\d+)?\b/gi, "")
     .replace(/\s+/g, " ")
     .trim()
-    .slice(0, 150);
+    .slice(0, 120);
 }
 
 function sourceHeading(item) {

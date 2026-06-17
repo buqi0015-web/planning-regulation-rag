@@ -87,7 +87,7 @@ class RagCoreTests(unittest.TestCase):
         self.assertIn("把规划法规问题，落到可核验依据。", page.text)
         self.assertIn("历史记录", page.text)
         self.assertIn("新建查询", page.text)
-        self.assertIn("app.js?v=20260617-2", page.text)
+        self.assertIn("app.js?v=20260617-3", page.text)
         self.assertNotIn("示例市", page.text)
         self.assertNotIn("模拟评测", page.text)
         self.assertNotIn("系统核验路径", page.text)
